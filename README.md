@@ -4,10 +4,11 @@ ChineseMedLLaMA is a Chinese medical assistant developed based on LLaMA-3.
 ## Requirements
 + python 3.10
 + pytorch 2.1
-+ transformers
-+ peft
-+ datasets
-+ L20
++ [transformers](https://github.com/huggingface/transformers)
++ [peft](https://github.com/huggingface/peft)
++ [datasets](https://github.com/huggingface/datasets)
++ [deepspeed](https://github.com/microsoft/DeepSpeed)
++ L20 GPU
 
 We recommend to use conda to manage virtual environments:
 ```
