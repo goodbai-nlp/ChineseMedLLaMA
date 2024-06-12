@@ -3,16 +3,15 @@ export CUDA_VISIBLE_DEVICES=0,1
 export NCCL_P2P_DISABLE=1
 export NCCL_IB_DISABLE=1
 
-#BasePath=/data1/xfbai
-#BasePath=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai
-BasePath=/mnt/data/home/usera6k10
+#BasePath=/mnt/data/home/usera6k10
+BasePath=/mnt/data/home/usera6k10/code/ChineseMedLLaMA
 
 CurDir=$(cd $(dirname $0);cd ..; pwd)
 
 MODEL_NAME=llama3-8b-instruct
 
 MODEL=${BasePath}/data/pretrained-models/${MODEL_NAME}
-DataPath=${BasePath}/data/TaskData
+DataPath=${BasePath}/data
 DataSetName=Chinese-MedQA-IT-llama3
 
 export HF_DATASETS_CACHE=${DataPath}/${DataSetName}/.cache
