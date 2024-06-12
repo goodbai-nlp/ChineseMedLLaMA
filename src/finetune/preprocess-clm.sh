@@ -1,10 +1,12 @@
 
+export NCCL_P2P_DISABLE=1
+export NCCL_IB_DISABLE=1
 BasePath=/data1/xfbai
 BasePath=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai
+BasePath=/mnt/data/home/usera6k10
 
 CurDir=$(cd $(dirname $0);cd ..; pwd)
 
-# MODEL_NAME=llama2-7b
 MODEL_NAME=llama3-8b-instruct
 
 MODEL=${BasePath}/data/pretrained-models/${MODEL_NAME}
@@ -19,7 +21,7 @@ NUM_EPOCHS=3
 BATCH_SIZE_PER_GPU=64
 GRADIENT_ACC_STEPS=1
 
-OUTPUT_DIR=${BasePath}/output/exp.MedLLaMA3/Preprocess-${DataSetName}-${MODEL_NAME}-ConditionalGenMode
+OUTPUT_DIR=${BasePath}/output/exp.MedLLaMA/Preprocess-${DataSetName}-${MODEL_NAME}-ConditionalGenMode
 
 if [ ! -d ${OUTPUT_DIR} ];then
   mkdir -p ${OUTPUT_DIR}

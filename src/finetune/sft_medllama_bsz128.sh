@@ -2,6 +2,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 
 #BasePath=/data1/xfbai
 BasePath=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai
+BasePath=/mnt/data/home/usera6k10
 
 CurDir=$(cd $(dirname $0);cd ..; pwd)
 
