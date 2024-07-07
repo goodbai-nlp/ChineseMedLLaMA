@@ -1,14 +1,17 @@
 export CUDA_VISIBLE_DEVICES=0,1
 
-#BasePath=/data1/xfbai
-BasePath=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai
+export NCCL_P2P_DISABLE=1
+export NCCL_IB_DISABLE=1
+
+#BasePath=/mnt/data/home/usera6k10
+BasePath=/mnt/data/home/usera6k10/code/ChineseMedLLaMA
 
 CurDir=$(cd $(dirname $0);cd ..; pwd)
 
 MODEL_NAME=llama3-8b-instruct
 
 MODEL=${BasePath}/data/pretrained-models/${MODEL_NAME}
-DataPath=${BasePath}/data/TaskData
+DataPath=${BasePath}/data
 DataSetName=Chinese-MedQA-IT-llama3
 
 export HF_DATASETS_CACHE=${DataPath}/${DataSetName}/.cache
@@ -24,6 +27,7 @@ lr=1e-4
 NUM_EPOCHS=10
 
 OUTPUT_DIR=${BasePath}/output/exp.MedLLaMA/PEFT-${DataSetName}-${MODEL_NAME}-ConGenMode-lr-${lr}-totalbsz${TOTAL_BATCH_SIZE}-decay0.1-${NUM_EPOCHS}epoch
+OUTPUT_DIR=${BasePath}/output/exp.MedLLaMA/PEFT-${DataSetName}-${MODEL_NAME}-ConGenMode-lr-${lr}-totalbsz${TOTAL_BATCH_SIZE}-decay0.1-${NUM_EPOCHS}epoch-L20
 
 if [ ! -d ${OUTPUT_DIR} ];then
   mkdir -p ${OUTPUT_DIR}
@@ -72,8 +76,8 @@ deepspeed ${CurDir}/main.py \
     --bf16 \
     --tf32 True \
     --overwrite_output_dir \
-    --preprocessing_num_workers 16 \
-    --dataloader_num_workers 16 \
+    --preprocessing_num_workers 8 \
+    --dataloader_num_workers 8 \
     --data_cache_dir ${DataPath}/${DataSetName}/.cache-llama3 \
     --wandb_project "medllama3" \
     --report_to "tensorboard" 2>&1 | tee ${OUTPUT_DIR}/training.log
