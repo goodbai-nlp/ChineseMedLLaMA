@@ -49,6 +49,8 @@ def get_raw_dataset(dataset_name_or_path, tokenizer, seed, local_rank):
         return PubMedLlama3Pretrain(dataset_name_or_path, seed, local_rank)
     elif dataset_name_or_path.endswith("MedQA-IT-llama3"):
         return MedQALlama3InstructTuning(dataset_name_or_path, tokenizer, seed, local_rank)
+    elif dataset_name_or_path.endswith("sft"):
+        return MedSFTDataset(dataset_name_or_path, seed, local_rank)
     else:
         raise RuntimeError(
             f"We do not have configs for dataset {dataset_name_or_path}, but you can add it by yourself in raw_datasets.py."
@@ -116,7 +118,6 @@ class PromptRawDataset(object):
     def __init__(self, data_path, seed, local_rank):
         self.seed = seed
         self.local_rank = local_rank
-        self.eos_token = eos_token
         self.raw_datasets = load_dataset(data_path)
 
     def get_train_data(self):
@@ -242,5 +243,65 @@ class MedQALlama3InstructTuning(LLMTuningDataset):
         input_full = [
             self.get_prompt_and_chosen([{"role":"system", "content": self.sys_instruction}] + conv)
             for conv in samples[self.input_key]
+        ]
+        return {"text": input_full, "prompt": input_prompt}
+
+
+class MedSFTDataset(PromptRawDataset):
+    def __init__(self, data_path, seed, local_rank):
+        super().__init__(data_path, seed, local_rank)
+        self.prompt_dict = {
+            "prompt_input": (
+                "Below is an instruction that describes a task, paired with an input that provides further context. "
+                "Write a response that appropriately completes the request.\n\n"
+                "### Instruction:\n{instruction}\n\n### Input:\n{input}\n\n### Response:"
+            ),
+            "prompt_no_input": (
+                "Below is an instruction that describes a task. "
+                "Write a response that appropriately completes the request.\n\n"
+                "### Instruction:\n{instruction}\n\n### Response:"
+            ),
+        }
+        self.dataset_name = "medsft"
+        self.dataset_name_clean = "medsft"
+        self.input_key = "input"
+        self.output_key = "output"
+        print("Loaded dataset", self.raw_datasets)
+
+    def get_train_data(self):
+        return self.raw_datasets["train"]
+
+    def get_eval_data(self):
+        return self.raw_datasets["validation"]
+
+    def get_prompt(self, sample):
+        return f'{self.prompt_dict["prompt_input"].format_map(sample) if sample.get("input", "") != "" else self.prompt_dict["prompt_no_input"].format_map(sample)}<|end_of_text|>'
+
+    def get_chosen(self, sample):
+        return sample[self.output_key]
+
+    def get_rejected(self, sample):
+        print(f"Warning: dataset {self.dataset_name} does not include rejected response.")
+        return None
+
+    def get_prompt_and_chosen(self, sample):
+        return f"{self.get_prompt(sample).strip('<|end_of_text|>')}{sample[self.output_key]}<|end_of_text|>"
+
+    def get_prompt_and_rejected(self, sample):
+        print(f"Warning: dataset {self.dataset_name} does not include rejected response.")
+        return None
+
+    def process_function(self, samples):
+        input_prompt = [
+            self.get_prompt({"instruction":instruction, self.input_key: inputs, self.output_key: output})
+            for instruction, inputs, output in zip(
+                samples["instruction"], samples["input"], samples["output"]
+            )
+        ]
+        input_full = [
+            self.get_prompt_and_chosen({"instruction":instruction, self.input_key: inputs, self.output_key: output})
+            for instruction, inputs, output in zip(
+                samples["instruction"], samples["input"], samples["output"]
+            )
         ]
         return {"text": input_full, "prompt": input_prompt}

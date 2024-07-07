@@ -10,6 +10,7 @@ MODEL_NAME=llama3-8b
 MODEL=${BasePath}/data/pretrained-models/${MODEL_NAME}
 DataPath=${BasePath}/data
 DataSetName=pubmed-abs
+DataSetName=debug-pubmed-abs
 
 export HF_DATASETS_CACHE=${DataPath}/${DataSetName}/.cache
 

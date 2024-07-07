@@ -192,19 +192,7 @@ def prompt_eval(args, model, tokenizer, prompts):
 
 
 def create_prompt(data, args, tokenizer=None):
-    if args.prompt_template == "None":
-        prompts = [itm[args.input_key] for itm in data]
-    elif args.prompt_template == "llama2-chat" or args.prompt_template == "llama3-chat" or args.prompt_template == "phi-3-instruct":
-        system_prompt = "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information."
-        assert tokenizer is not None, "tokenizer should not be None when using {args.prompt_template} template."
-        prompts = []
-        for sample in data:
-            chat = [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": sample[args.input_key].rstrip()},
-            ]
-            prompts.append(tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True))
-    elif args.prompt_template == "chinese-llama3-chat":
+    if args.prompt_template == "chinese-llama3-chat":
         system_prompt = "你是一个医疗助手，针对用户的问题给出有用且安全的回复。"
         assert tokenizer is not None, "tokenizer should not be None when using {args.prompt_template} template."
         prompts = []
@@ -214,13 +202,6 @@ def create_prompt(data, args, tokenizer=None):
                 {"role": "user", "content": sample[args.input_key].rstrip()},
             ]
             prompts.append(tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True))
-    elif args.prompt_template == "supervised-llama3-base":
-        sys_instruction = ""
-        task_instruction = args.instruction if "instruction" not in data[0] else data[0]["instruction"]
-        prompts = [
-            f'<|begin_of_text|>{sys_instruction}Human:\n{task_instruction} {sample[args.input_key]}\nAssistant:\n'
-            for sample in data
-        ]
     else:
         print(f"Invalid Prompt template:{args.prompt_template}, exit ...")
         exit()
