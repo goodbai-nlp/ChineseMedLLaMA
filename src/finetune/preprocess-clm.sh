@@ -6,10 +6,12 @@ CurDir=$(cd $(dirname $0);cd ..; pwd)
 
 # MODEL_NAME=llama2-7b
 MODEL_NAME=llama3-8b-instruct
+MODEL_NAME=MedLLaMA3-epoch3
 
 MODEL=${BasePath}/data/pretrained-models/${MODEL_NAME}
 DataPath=${BasePath}/data/TaskData
 DataSetName=Chinese-MedQA-IT-llama3
+DataSetName=pmc-new-sft
 
 export HF_DATASETS_CACHE=${DataPath}/${DataSetName}/.cache
 

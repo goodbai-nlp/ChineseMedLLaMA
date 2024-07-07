@@ -1,0 +1,927 @@
+gpu001
+0,1,2,3,4,5,6,7
+Sun Jun 30 18:53:28 2024       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.54.03              Driver Version: 535.54.03    CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100 80GB PCIe          Off | 00000000:34:00.0 Off |                    0 |
+| N/A   35C    P0              44W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100 80GB PCIe          Off | 00000000:35:00.0 Off |                    0 |
+| N/A   35C    P0              45W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   2  NVIDIA A100 80GB PCIe          Off | 00000000:36:00.0 Off |                    0 |
+| N/A   36C    P0              44W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   3  NVIDIA A100 80GB PCIe          Off | 00000000:37:00.0 Off |                    0 |
+| N/A   33C    P0              41W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   4  NVIDIA A100 80GB PCIe          Off | 00000000:9B:00.0 Off |                    0 |
+| N/A   36C    P0              46W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   5  NVIDIA A100 80GB PCIe          Off | 00000000:9C:00.0 Off |                    0 |
+| N/A   37C    P0              44W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   6  NVIDIA A100 80GB PCIe          Off | 00000000:9D:00.0 Off |                    0 |
+| N/A   37C    P0              47W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   7  NVIDIA A100 80GB PCIe          Off | 00000000:9E:00.0 Off |                    0 |
+| N/A   35C    P0              46W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+Training llama model 8B using 8 GPUs, 4 batch size per GPU, 4 gradient accumulation steps
+Please answer yes or no.
+/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src
+[2024-06-30 18:53:40,623] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:53:45,897] [WARNING] [runner.py:202:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+Detected CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7: setting --include=localhost:0,1,2,3,4,5,6,7
+[2024-06-30 18:53:45,950] [INFO] [runner.py:570:main] cmd = /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/bin/python -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN119 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None /online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py --deepspeed /online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/ds_configs/stage1_no_offloading.conf --data_path /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/TaskData/pmc-new-sft --model_name_or_path /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3 --tokenizer_name /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3 --use_fast_tokenizer False --conditional_gen True --max_seq_length 2048 --do_train --do_eval --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 4 --learning_rate 2e-5 --lr_scheduler_type cosine --warmup_ratio 0.03 --weight_decay 0.1 --evaluation_strategy epoch --logging_steps 100 --greater_is_better False --save_strategy epoch --save_total_limit 5 --save_only_model True --num_train_epochs 5 --logging_first_step True --gradient_checkpointing --use_peft False --use_flash_attn True --output_dir /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/output/exp.MedLLaMA3/SFT-pmc-new-sft-MedLLaMA3-epoch3-ConGenMode-lr-2e-5-totalbsz128-decay0.1-5epoch --torch_dtype bfloat16 --bf16 --tf32 True --overwrite_output_dir --preprocessing_num_workers 32 --dataloader_num_workers 32 --data_cache_dir /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/TaskData/pmc-new-sft/.cache-llama3 --wandb_project medllama3 --report_to tensorboard
+[2024-06-30 18:53:48,995] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:53:50,466] [INFO] [launch.py:145:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]}
+[2024-06-30 18:53:50,466] [INFO] [launch.py:151:main] nnodes=1, num_local_procs=8, node_rank=0
+[2024-06-30 18:53:50,466] [INFO] [launch.py:162:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]})
+[2024-06-30 18:53:50,466] [INFO] [launch.py:163:main] dist_world_size=8
+[2024-06-30 18:53:50,466] [INFO] [launch.py:165:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+[2024-06-30 18:54:00,489] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:54:00,498] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:54:00,511] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:54:00,527] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:54:00,528] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:54:00,528] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:54:00,531] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:54:00,534] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:54:00,900] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:54:00,924] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:54:00,938] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:54:00,938] [INFO] [comm.py:668:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2024-06-30 18:54:00,990] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:54:01,005] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:54:01,015] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:54:01,057] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:54:01,189] [INFO] [comm.py:637:init_distributed] cdb=None
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:54:07 - WARNING - __main__ - Process rank: 7, device: cuda:7, n_gpu: 1distributed training: True, 16-bits training: False
+06/30/2024 18:54:07 - WARNING - __main__ - Process rank: 2, device: cuda:2, n_gpu: 1distributed training: True, 16-bits training: False
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:54:07 - WARNING - __main__ - Process rank: 4, device: cuda:4, n_gpu: 1distributed training: True, 16-bits training: False
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:54:07 - WARNING - __main__ - Process rank: 3, device: cuda:3, n_gpu: 1distributed training: True, 16-bits training: False
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:54:07 - WARNING - __main__ - Process rank: 6, device: cuda:6, n_gpu: 1distributed training: True, 16-bits training: False
+[WARNING|logging.py:314] 2024-06-30 18:54:07,710 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|logging.py:314] 2024-06-30 18:54:07,765 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|logging.py:314] 2024-06-30 18:54:07,774 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|logging.py:314] 2024-06-30 18:54:07,817 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:54:07 - WARNING - __main__ - Process rank: 1, device: cuda:1, n_gpu: 1distributed training: True, 16-bits training: False
+[WARNING|logging.py:314] 2024-06-30 18:54:07,981 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:54:08 - WARNING - __main__ - Process rank: 5, device: cuda:5, n_gpu: 1distributed training: True, 16-bits training: False
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:54:08 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 1distributed training: True, 16-bits training: False
+06/30/2024 18:54:08 - INFO - __main__ - Training parameters LLMTrainingArguments(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'gradient_accumulation_kwargs': None},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=True,
+bf16_full_eval=False,
+conditional_gen=True,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/ds_configs/stage1_no_offloading.conf,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=True,
+early_stopping=5,
+eval_accumulation_steps=None,
+eval_dataloader_num_workers=0,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_steps=None,
+evaluation_strategy=epoch,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+generation_max_length=None,
+generation_num_beams=None,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs=None,
+greater_is_better=False,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+ignore_opt_states=False,
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=2e-05,
+length_column_name=length,
+length_penalty=1.0,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/output/exp.MedLLaMA3/SFT-pmc-new-sft-MedLLaMA3-epoch3-ConGenMode-lr-2e-5-totalbsz128-decay0.1-5epoch/runs/Jun30_18-54-00_gpu001,
+logging_first_step=True,
+logging_nan_inf_filter=True,
+logging_steps=100,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_new_tokens=128,
+max_steps=-1,
+metric_for_best_model=None,
+min_length=0,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=5.0,
+optim=adamw_torch,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/output/exp.MedLLaMA3/SFT-pmc-new-sft-MedLLaMA3-epoch3-ConGenMode-lr-2e-5-totalbsz128-decay0.1-5epoch,
+overwrite_output_dir=True,
+past_index=-1,
+peft_lora_alpha=16,
+peft_lora_r=64,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+predict_with_generate=False,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard'],
+resume_from_checkpoint=None,
+run_name=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/output/exp.MedLLaMA3/SFT-pmc-new-sft-MedLLaMA3-epoch3-ConGenMode-lr-2e-5-totalbsz128-decay0.1-5epoch,
+save_on_each_node=False,
+save_only_model=True,
+save_safetensors=True,
+save_steps=500,
+save_strategy=epoch,
+save_total_limit=5,
+seed=42,
+skip_memory_metrics=True,
+smart_init=False,
+sortish_sampler=False,
+split_batches=None,
+task=amr2text,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_flash_attn=True,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+use_peft=False,
+use_qlora=False,
+wandb_project=medllama3,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+[INFO|configuration_utils.py:724] 2024-06-30 18:54:08,079 >> loading configuration file /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3/config.json
+[INFO|configuration_utils.py:789] 2024-06-30 18:54:08,083 >> Model config LlamaConfig {
+  "_name_or_path": "/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 14336,
+  "max_position_embeddings": 8192,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": null,
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": false,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.40.2",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2085] 2024-06-30 18:54:08,087 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2085] 2024-06-30 18:54:08,088 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2085] 2024-06-30 18:54:08,088 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2085] 2024-06-30 18:54:08,088 >> loading file tokenizer_config.json
+[WARNING|logging.py:314] 2024-06-30 18:54:08,253 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|logging.py:314] 2024-06-30 18:54:08,442 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+06/30/2024 18:54:08 - INFO - __main__ - Unsupportted Tokenizer Type:<class 'transformers.tokenization_utils_fast.PreTrainedTokenizerFast'>
+[WARNING|logging.py:314] 2024-06-30 18:54:08,447 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+06/30/2024 18:54:10 - INFO - __main__ - Loading from cache ...
+[INFO|modeling_utils.py:3426] 2024-06-30 18:54:11,339 >> loading weights file /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3/model.safetensors.index.json
+[INFO|modeling_utils.py:1494] 2024-06-30 18:54:11,340 >> Instantiating LlamaForCausalLM model under default dtype torch.bfloat16.
+[WARNING|logging.py:329] 2024-06-30 18:54:11,340 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[WARNING|logging.py:329] 2024-06-30 18:54:11,344 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[WARNING|logging.py:329] 2024-06-30 18:54:11,344 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[WARNING|logging.py:329] 2024-06-30 18:54:11,344 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[WARNING|logging.py:329] 2024-06-30 18:54:11,347 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[WARNING|logging.py:329] 2024-06-30 18:54:11,347 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[WARNING|logging.py:329] 2024-06-30 18:54:11,348 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[WARNING|logging.py:329] 2024-06-30 18:54:11,349 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[INFO|configuration_utils.py:928] 2024-06-30 18:54:11,349 >> Generate config GenerationConfig {
+  "bos_token_id": 128000,
+  "eos_token_id": 128001
+}
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:31<01:34, 31.51s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:37<01:53, 37.92s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:37<01:52, 37.53s/it]wandb: Network error (ConnectTimeout), entering retry loop.
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:38<01:55, 38.42s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:38<01:55, 38.44s/it]wandb: Network error (ConnectTimeout), entering retry loop.
+wandb: Network error (ConnectTimeout), entering retry loop.
+wandb: Network error (ConnectTimeout), entering retry loop.
+wandb: Network error (ConnectTimeout), entering retry loop.
+wandb: Network error (ConnectTimeout), entering retry loop.
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:39<01:58, 39.59s/it]wandb: Network error (ConnectTimeout), entering retry loop.
+wandb: Network error (ConnectTimeout), entering retry loop.
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:38<01:56, 38.79s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:39<01:58, 39.44s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:57<00:56, 28.46s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:15<01:15, 37.54s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:14<01:14, 37.14s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:14<01:14, 37.31s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:19<00:25, 25.17s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:15<01:15, 37.71s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:15<01:14, 37.44s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:15<01:15, 37.66s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:15<01:15, 37.85s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:22<00:00, 16.69s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:22<00:00, 20.70s/it]
+[INFO|modeling_utils.py:4170] 2024-06-30 18:55:46,404 >> All model checkpoint weights were used when initializing LlamaForCausalLM.
+
+[INFO|modeling_utils.py:4178] 2024-06-30 18:55:46,404 >> All the weights of LlamaForCausalLM were initialized from the model checkpoint at /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use LlamaForCausalLM for predictions without further training.
+[INFO|configuration_utils.py:881] 2024-06-30 18:55:46,421 >> loading configuration file /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3/generation_config.json
+[INFO|configuration_utils.py:928] 2024-06-30 18:55:46,421 >> Generate config GenerationConfig {
+  "bos_token_id": 128000,
+  "eos_token_id": 128001
+}
+
+06/30/2024 18:55:46 - INFO - __main__ - Sample 107473 of the training set: {'input_ids': [128000, 39314, 374, 459, 7754, 430, 16964, 264, 3465, 11, 35526, 449, 459, 1988, 430, 5825, 4726, 2317, 13, 9842, 264, 2077, 430, 36001, 45695, 279, 1715, 382, 14711, 30151, 512, 83896, 701, 3560, 439, 264, 6593, 55472, 11, 4587, 1005, 279, 8893, 596, 4096, 311, 4320, 279, 6593, 4860, 382, 14711, 5688, 512, 11769, 6693, 358, 15508, 709, 358, 31978, 21423, 68, 3059, 369, 4330, 4520, 13, 358, 617, 36899, 58742, 719, 358, 1935, 60754, 16088, 369, 433, 13, 3092, 58742, 1935, 2035, 2391, 279, 10683, 14, 63666, 13, 15636, 358, 15890, 1518, 264, 2944, 3249, 856, 6926, 21423, 10333, 287, 374, 4737, 2035, 13, 3639, 656, 499, 1781, 1980, 14711, 6075, 25, 14711, 16533, 25, 62525, 3515, 36899, 60754, 1253, 387, 16614, 311, 16174, 477, 1023, 25405, 729, 304, 279, 4676, 13, 2468, 3118, 11, 499, 2873, 311, 387, 3515, 21423, 10333, 287, 18243, 304, 279, 6693, 13, 1115, 374, 4245, 311, 279, 9546, 315, 16174, 477, 11824, 13149, 19150, 13, 3277, 499, 733, 311, 279, 4950, 304, 279, 3814, 279, 38207, 315, 701, 2547, 690, 387, 3428, 13, 578, 16174, 323, 1023, 25405, 729, 690, 636, 41165, 4871, 279, 19689, 13, 3277, 499, 15508, 709, 304, 279, 6693, 11, 279, 38207, 527, 1203, 323, 420, 690, 13519, 279, 8271, 922, 279, 9546, 315, 25405, 729, 323, 1243, 279, 19689, 8638, 33850, 433, 11, 96811, 21423, 10333, 287, 323, 4401, 19689, 13, 32140, 11, 5766, 21811, 304, 4156, 315, 279, 10807, 477, 1234, 279, 8571, 323, 2349, 701, 43425, 3504, 1475, 3814, 1603, 2133, 311, 279, 4950, 13, 15353, 449, 279, 39653, 369, 60754, 13, 92179, 128001], 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'labels': [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 14711, 16533, 25, 62525, 3515, 36899, 60754, 1253, 387, 16614, 311, 16174, 477, 1023, 25405, 729, 304, 279, 4676, 13, 2468, 3118, 11, 499, 2873, 311, 387, 3515, 21423, 10333, 287, 18243, 304, 279, 6693, 13, 1115, 374, 4245, 311, 279, 9546, 315, 16174, 477, 11824, 13149, 19150, 13, 3277, 499, 733, 311, 279, 4950, 304, 279, 3814, 279, 38207, 315, 701, 2547, 690, 387, 3428, 13, 578, 16174, 323, 1023, 25405, 729, 690, 636, 41165, 4871, 279, 19689, 13, 3277, 499, 15508, 709, 304, 279, 6693, 11, 279, 38207, 527, 1203, 323, 420, 690, 13519, 279, 8271, 922, 279, 9546, 315, 25405, 729, 323, 1243, 279, 19689, 8638, 33850, 433, 11, 96811, 21423, 10333, 287, 323, 4401, 19689, 13, 32140, 11, 5766, 21811, 304, 4156, 315, 279, 10807, 477, 1234, 279, 8571, 323, 2349, 701, 43425, 3504, 1475, 3814, 1603, 2133, 311, 279, 4950, 13, 15353, 449, 279, 39653, 369, 60754, 13, 92179, 128001]}.
+06/30/2024 18:55:46 - INFO - __main__ - Sample 571858 of the training set: {'input_ids': [128000, 39314, 374, 459, 7754, 430, 16964, 264, 3465, 11, 35526, 449, 459, 1988, 430, 5825, 4726, 2317, 13, 9842, 264, 2077, 430, 36001, 45695, 279, 1715, 382, 14711, 30151, 512, 22818, 701, 4092, 439, 264, 10896, 11, 4587, 3493, 701, 20616, 304, 28118, 279, 6593, 4860, 3196, 389, 279, 8893, 596, 2759, 627, 849, 21435, 279, 7419, 315, 279, 6593, 4751, 382, 14711, 5688, 512, 14711, 14924, 25, 3639, 374, 279, 7438, 315, 57598, 20438, 1367, 8363, 1980, 14711, 6075, 25, 14711, 16533, 25, 1556, 97307, 45512, 430, 374, 1511, 311, 9407, 279, 9861, 17659, 6930, 1306, 264, 19218, 72783, 323, 4972, 311, 34933, 43738, 13, 128001], 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'labels': [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 14711, 16533, 25, 1556, 97307, 45512, 430, 374, 1511, 311, 9407, 279, 9861, 17659, 6930, 1306, 264, 19218, 72783, 323, 4972, 311, 34933, 43738, 13, 128001]}.
+06/30/2024 18:55:46 - INFO - __main__ - Sample 91161 of the training set: {'input_ids': [128000, 39314, 374, 459, 7754, 430, 16964, 264, 3465, 11, 35526, 449, 459, 1988, 430, 5825, 4726, 2317, 13, 9842, 264, 2077, 430, 36001, 45695, 279, 1715, 382, 14711, 30151, 512, 34242, 264, 10896, 11, 701, 3465, 374, 311, 4320, 279, 6593, 4860, 3196, 389, 279, 8893, 596, 4096, 382, 14711, 5688, 512, 40, 1097, 264, 220, 5547, 1060, 2362, 8954, 11, 9923, 13111, 323, 617, 539, 1027, 27681, 4642, 2533, 4648, 315, 10177, 304, 220, 679, 16, 13, 358, 1097, 3515, 75676, 65822, 1234, 856, 2163, 6916, 320, 32345, 459, 29374, 14869, 1331, 2494, 37663, 704, 75676, 323, 374, 10269, 1457, 719, 1781, 433, 374, 272, 25909, 705, 2163, 17659, 11, 63581, 389, 2163, 6916, 3221, 3770, 46811, 323, 33271, 13, 4800, 358, 617, 76193, 10269, 65822, 389, 2225, 11314, 315, 856, 39888, 382, 14711, 6075, 25, 14711, 16533, 25, 22691, 14981, 1637, 10788, 311, 13149, 19150, 522, 638, 617, 26126, 701, 3319, 27461, 5013, 65057, 810, 304, 12976, 449, 103382, 77140, 63581, 927, 6916, 11, 44790, 477, 1023, 63581, 927, 279, 39888, 5013, 88715, 369, 2731, 13654, 482, 13969, 279, 5596, 4335, 449, 3276, 1082, 27330, 14812, 12898, 2493, 354, 6417, 77001, 16174, 287, 17138, 927, 279, 2254, 961, 12898, 95951, 62114, 13291, 449, 701, 10896, 369, 19405, 961, 5013, 53485, 11349, 72908, 264, 6685, 10532, 369, 4726, 19351, 422, 3284, 323, 912, 46655, 13, 18231, 420, 57698, 701, 3319, 13, 20776, 369, 4726, 19351, 662, 92179, 13, 128001], 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'labels': [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 14711, 16533, 25, 22691, 14981, 1637, 10788, 311, 13149, 19150, 522, 638, 617, 26126, 701, 3319, 27461, 5013, 65057, 810, 304, 12976, 449, 103382, 77140, 63581, 927, 6916, 11, 44790, 477, 1023, 63581, 927, 279, 39888, 5013, 88715, 369, 2731, 13654, 482, 13969, 279, 5596, 4335, 449, 3276, 1082, 27330, 14812, 12898, 2493, 354, 6417, 77001, 16174, 287, 17138, 927, 279, 2254, 961, 12898, 95951, 62114, 13291, 449, 701, 10896, 369, 19405, 961, 5013, 53485, 11349, 72908, 264, 6685, 10532, 369, 4726, 19351, 422, 3284, 323, 912, 46655, 13, 18231, 420, 57698, 701, 3319, 13, 20776, 369, 4726, 19351, 662, 92179, 13, 128001]}.
+06/30/2024 18:55:46 - WARNING - accelerate.utils.other - Detected kernel version 3.10.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+[INFO|trainer.py:626] 2024-06-30 18:55:46,635 >> Using auto half precision backend
+[2024-06-30 18:55:47,012] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed info: version=0.12.5, git-hash=unknown, git-branch=unknown
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:46<00:34, 34.55s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:46<00:34, 34.75s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:46<00:34, 34.92s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:47<00:34, 34.82s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:46<00:34, 34.79s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:48<00:00, 21.68s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:48<00:00, 27.04s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:47<00:35, 35.13s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:48<00:35, 35.40s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:52<00:00, 23.47s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:52<00:00, 28.21s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:53<00:00, 23.57s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:53<00:00, 28.42s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:53<00:00, 23.67s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:53<00:00, 28.27s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:52<00:00, 23.42s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:52<00:00, 28.23s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:53<00:00, 23.39s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:53<00:00, 28.34s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:53<00:00, 23.40s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:53<00:00, 28.34s/it]
+[2024-06-30 18:56:25,146] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+Using /online1/ycsc_chenkh/chenkh_nvlink/.cache/torch_extensions/py310_cu118 as PyTorch extensions root...Using /online1/ycsc_chenkh/chenkh_nvlink/.cache/torch_extensions/py310_cu118 as PyTorch extensions root...
+
+Using /online1/ycsc_chenkh/chenkh_nvlink/.cache/torch_extensions/py310_cu118 as PyTorch extensions root...
+Using /online1/ycsc_chenkh/chenkh_nvlink/.cache/torch_extensions/py310_cu118 as PyTorch extensions root...
+Using /online1/ycsc_chenkh/chenkh_nvlink/.cache/torch_extensions/py310_cu118 as PyTorch extensions root...
+Using /online1/ycsc_chenkh/chenkh_nvlink/.cache/torch_extensions/py310_cu118 as PyTorch extensions root...
+Using /online1/ycsc_chenkh/chenkh_nvlink/.cache/torch_extensions/py310_cu118 as PyTorch extensions root...
+Using /online1/ycsc_chenkh/chenkh_nvlink/.cache/torch_extensions/py310_cu118 as PyTorch extensions root...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /online1/ycsc_chenkh/chenkh_nvlink/.cache/torch_extensions/py310_cu118/fused_adam/build.ninja...
+Building extension module fused_adam...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[1/3] /online1/public/support/amd/cuda/11.8/bin/nvcc  -ccbin /online1/public/support/amd/spack/opt/spack/linux-centos7-x86_64_v3/gcc-4.8.5/gcc-9.3.0-ys5vrpofw3bs7lvvadnwftrlytn2tgeo/bin/gcc -DTORCH_EXTENSION_NAME=fused_adam -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -I/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/csrc/includes -I/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/csrc/adam -isystem /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/include -isystem /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -isystem /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/include/TH -isystem /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/include/THC -isystem /online1/public/support/amd/cuda/11.8/include -isystem /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/include/python3.10 -D_GLIBCXX_USE_CXX11_ABI=0 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr -gencode=arch=compute_80,code=compute_80 -gencode=arch=compute_80,code=sm_80 --compiler-options '-fPIC' -O3 -DVERSION_GE_1_1 -DVERSION_GE_1_3 -DVERSION_GE_1_5 -lineinfo --use_fast_math -gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_80,code=compute_80 -DBF16_AVAILABLE -U__CUDA_NO_BFLOAT16_OPERATORS__ -U__CUDA_NO_BFLOAT162_OPERATORS__ -std=c++17 -c /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/csrc/adam/multi_tensor_adam.cu -o multi_tensor_adam.cuda.o 
+[2/3] /online1/public/support/amd/spack/opt/spack/linux-centos7-x86_64_v3/gcc-4.8.5/gcc-9.3.0-ys5vrpofw3bs7lvvadnwftrlytn2tgeo/bin/g++ -MMD -MF fused_adam_frontend.o.d -DTORCH_EXTENSION_NAME=fused_adam -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -I/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/csrc/includes -I/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/csrc/adam -isystem /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/include -isystem /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -isystem /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/include/TH -isystem /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/include/THC -isystem /online1/public/support/amd/cuda/11.8/include -isystem /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/include/python3.10 -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC -std=c++17 -O3 -std=c++17 -g -Wno-reorder -DVERSION_GE_1_1 -DVERSION_GE_1_3 -DVERSION_GE_1_5 -DBF16_AVAILABLE -c /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/csrc/adam/fused_adam_frontend.cpp -o fused_adam_frontend.o 
+[3/3] /online1/public/support/amd/spack/opt/spack/linux-centos7-x86_64_v3/gcc-4.8.5/gcc-9.3.0-ys5vrpofw3bs7lvvadnwftrlytn2tgeo/bin/g++ fused_adam_frontend.o multi_tensor_adam.cuda.o -shared -L/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/lib -lc10 -lc10_cuda -ltorch_cpu -ltorch_cuda -ltorch -ltorch_python -L/online1/public/support/amd/cuda/11.8/lib64 -lcudart -o fused_adam.so
+Loading extension module fused_adam...
+Loading extension module fused_adam...
+Loading extension module fused_adam...
+Time to load fused_adam op: 31.983458518981934 seconds
+Time to load fused_adam op: 31.984351873397827 seconds
+Time to load fused_adam op: 31.984917163848877 seconds
+Loading extension module fused_adam...
+Time to load fused_adam op: 31.988483667373657 seconds
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/adam/fused_adam.py:96: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/conda/conda-bld/pytorch_1702400366987/work/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._dummy_overflow_buf = get_accelerator().IntTensor([0])
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/adam/fused_adam.py:96: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/conda/conda-bld/pytorch_1702400366987/work/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._dummy_overflow_buf = get_accelerator().IntTensor([0])
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/adam/fused_adam.py:96: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/conda/conda-bld/pytorch_1702400366987/work/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._dummy_overflow_buf = get_accelerator().IntTensor([0])
+[2024-06-30 18:56:57,825] [INFO] [logging.py:96:log_dist] [Rank 0] Using DeepSpeed Optimizer param name adamw as basic optimizer
+[2024-06-30 18:56:57,825] [INFO] [logging.py:96:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/adam/fused_adam.py:96: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/conda/conda-bld/pytorch_1702400366987/work/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._dummy_overflow_buf = get_accelerator().IntTensor([0])
+Loading extension module fused_adam...
+Time to load fused_adam op: 31.981894969940186 seconds
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/adam/fused_adam.py:96: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/conda/conda-bld/pytorch_1702400366987/work/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._dummy_overflow_buf = get_accelerator().IntTensor([0])
+Loading extension module fused_adam...
+Time to load fused_adam op: 32.00642967224121 seconds
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/adam/fused_adam.py:96: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/conda/conda-bld/pytorch_1702400366987/work/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._dummy_overflow_buf = get_accelerator().IntTensor([0])
+[2024-06-30 18:56:57,865] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[2024-06-30 18:56:57,865] [INFO] [utils.py:56:is_zero_supported_optimizer] Checking ZeRO support for optimizer=FusedAdam type=<class 'deepspeed.ops.adam.fused_adam.FusedAdam'>
+[2024-06-30 18:56:57,865] [INFO] [logging.py:96:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 1 optimizer
+[2024-06-30 18:56:57,865] [INFO] [stage_1_and_2.py:148:__init__] Reduce bucket size 16777216
+[2024-06-30 18:56:57,866] [INFO] [stage_1_and_2.py:149:__init__] Allgather bucket size 500,000,000
+[2024-06-30 18:56:57,866] [INFO] [stage_1_and_2.py:150:__init__] CPU Offload: False
+[2024-06-30 18:56:57,866] [INFO] [stage_1_and_2.py:151:__init__] Round robin gradient partitioning: False
+Loading extension module fused_adam...
+Time to load fused_adam op: 31.97916579246521 seconds
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/adam/fused_adam.py:96: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/conda/conda-bld/pytorch_1702400366987/work/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._dummy_overflow_buf = get_accelerator().IntTensor([0])
+Loading extension module fused_adam...
+Time to load fused_adam op: 31.988628387451172 seconds
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/deepspeed/ops/adam/fused_adam.py:96: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/conda/conda-bld/pytorch_1702400366987/work/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._dummy_overflow_buf = get_accelerator().IntTensor([0])
+[WARNING|logging.py:314] 2024-06-30 18:57:19,649 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,651 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,651 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,651 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,652 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,651 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,651 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,651 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,652 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,652 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,652 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,653 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,653 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,654 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,654 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,654 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,654 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,655 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,655 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,656 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,659 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,667 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,668 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,669 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,670 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,671 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,671 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,672 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,678 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,681 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,682 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:19,690 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[2024-06-30 18:57:19,702] [INFO] [utils.py:770:see_memory_usage] Before initializing optimizer states
+[2024-06-30 18:57:19,702] [INFO] [utils.py:771:see_memory_usage] MA 18.82 GB         Max_MA 20.69 GB         CA 21.2 GB         Max_CA 21 GB 
+[2024-06-30 18:57:19,703] [INFO] [utils.py:778:see_memory_usage] CPU Virtual Memory:  used = 92.85 GB, percent = 9.2%
+Saving dummy inputs...
+Skiping attention_mask...
+[WARNING|logging.py:329] 2024-06-30 18:57:19,783 >> `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[2024-06-30 18:57:19,960] [INFO] [utils.py:770:see_memory_usage] After initializing optimizer states
+[2024-06-30 18:57:19,961] [INFO] [utils.py:771:see_memory_usage] MA 26.3 GB         Max_MA 30.04 GB         CA 32.42 GB         Max_CA 32 GB 
+[2024-06-30 18:57:19,961] [INFO] [utils.py:778:see_memory_usage] CPU Virtual Memory:  used = 78.42 GB, percent = 7.8%
+[2024-06-30 18:57:19,962] [INFO] [stage_1_and_2.py:516:__init__] optimizer state initialized
+[2024-06-30 18:57:20,325] [INFO] [utils.py:770:see_memory_usage] After initializing ZeRO optimizer
+[2024-06-30 18:57:20,335] [INFO] [utils.py:771:see_memory_usage] MA 26.3 GB         Max_MA 26.3 GB         CA 32.42 GB         Max_CA 32 GB 
+[2024-06-30 18:57:20,335] [INFO] [utils.py:778:see_memory_usage] CPU Virtual Memory:  used = 52.73 GB, percent = 5.2%
+[2024-06-30 18:57:20,336] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Final Optimizer = adamw
+[2024-06-30 18:57:20,337] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed using configured LR scheduler = WarmupDecayLR
+[2024-06-30 18:57:20,337] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed LR Scheduler = <deepspeed.runtime.lr_schedules.WarmupDecayLR object at 0x7f889938faf0>
+[2024-06-30 18:57:20,337] [INFO] [logging.py:96:log_dist] [Rank 0] step=0, skipped=0, lr=[2e-05], mom=[[0.9, 0.999]]
+[2024-06-30 18:57:20,337] [INFO] [config.py:979:print] DeepSpeedEngine configuration:
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   activation_checkpointing_config  {
+    "partition_activations": false, 
+    "contiguous_memory_optimization": false, 
+    "cpu_checkpointing": false, 
+    "number_checkpoints": null, 
+    "synchronize_checkpoint_boundary": false, 
+    "profile": false
+}
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True}
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   amp_enabled .................. False
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   amp_params ................... False
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   autotuning_config ............ {
+    "enabled": false, 
+    "start_step": null, 
+    "end_step": null, 
+    "metric_path": null, 
+    "arg_mappings": null, 
+    "metric": "throughput", 
+    "model_info": null, 
+    "results_dir": "autotuning_results", 
+    "exps_dir": "autotuning_exps", 
+    "overwrite": true, 
+    "fast": true, 
+    "start_profile_step": 3, 
+    "end_profile_step": 5, 
+    "tuner_type": "gridsearch", 
+    "tuner_early_stopping": 5, 
+    "tuner_num_trials": 50, 
+    "model_info_path": null, 
+    "mp_size": 1, 
+    "max_train_batch_size": null, 
+    "min_train_batch_size": 1, 
+    "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+    "min_train_micro_batch_size_per_gpu": 1, 
+    "num_tuning_micro_batch_sizes": 3
+}
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   bfloat16_enabled ............. True
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   checkpoint_parallel_write_pipeline  False
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   checkpoint_tag_validation_enabled  True
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   checkpoint_tag_validation_fail  False
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x7f889938d690>
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   communication_data_type ...... None
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   curriculum_enabled_legacy .... False
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   curriculum_params_legacy ..... False
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   data_efficiency_enabled ...... False
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   dataloader_drop_last ......... False
+[2024-06-30 18:57:20,338] [INFO] [config.py:983:print]   disable_allgather ............ False
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   dump_state ................... False
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   dynamic_loss_scale_args ...... None
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   eigenvalue_enabled ........... False
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   eigenvalue_gas_boundary_resolution  1
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   eigenvalue_layer_num ......... 0
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   eigenvalue_max_iter .......... 100
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   eigenvalue_stability ......... 1e-06
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   eigenvalue_tol ............... 0.01
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   eigenvalue_verbose ........... False
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   elasticity_enabled ........... False
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   flops_profiler_config ........ {
+    "enabled": false, 
+    "recompute_fwd_factor": 0.0, 
+    "profile_step": 1, 
+    "module_depth": -1, 
+    "top_modules": 1, 
+    "detailed": true, 
+    "output_file": null
+}
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   fp16_auto_cast ............... None
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   fp16_enabled ................. False
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   fp16_master_weights_and_gradients  False
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   global_rank .................. 0
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   grad_accum_dtype ............. None
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   gradient_accumulation_steps .. 4
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   gradient_clipping ............ 1.0
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   gradient_predivide_factor .... 1.0
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   initial_dynamic_scale ........ 1
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   load_universal_checkpoint .... False
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   loss_scale ................... 1.0
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   memory_breakdown ............. False
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   mics_hierarchial_params_gather  False
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   mics_shard_size .............. -1
+[2024-06-30 18:57:20,339] [INFO] [config.py:983:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') enabled=False
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   nebula_config ................ {
+    "enabled": false, 
+    "persistent_storage_path": null, 
+    "persistent_time_interval": 100, 
+    "num_of_version_in_retention": 2, 
+    "enable_nebula_load": true, 
+    "load_path": null
+}
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   optimizer_legacy_fusion ...... False
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   optimizer_name ............... adamw
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   optimizer_params ............. {'lr': 2e-05, 'betas': [0.9, 0.999], 'eps': 1e-08, 'weight_decay': 0.1}
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   pld_enabled .................. False
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   pld_params ................... False
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   prescale_gradients ........... False
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   scheduler_name ............... WarmupDecayLR
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   scheduler_params ............. {'total_num_steps': 25260, 'warmup_min_lr': 0, 'warmup_max_lr': 2e-05, 'warmup_num_steps': 758}
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   seq_parallel_communication_data_type  torch.float32
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   sparse_attention ............. None
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   sparse_gradients_enabled ..... False
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   steps_per_print .............. inf
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   train_batch_size ............. 128
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   train_micro_batch_size_per_gpu  4
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   use_data_before_expert_parallel_  False
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   use_node_local_storage ....... False
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   wall_clock_breakdown ......... False
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   weight_quantization_config ... None
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   world_size ................... 8
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   zero_allow_untested_optimizer  False
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   zero_config .................. stage=1 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=16777216 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500,000,000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=None offload_optimizer=None sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=15099494 param_persistence_threshold=40960 model_persistence_threshold=sys.maxsize max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=True stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   zero_enabled ................. True
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   zero_force_ds_cpu_optimizer .. True
+[2024-06-30 18:57:20,340] [INFO] [config.py:983:print]   zero_optimization_stage ...... 1
+[2024-06-30 18:57:20,341] [INFO] [config.py:969:print_user_config]   json = {
+    "bf16": {
+        "enabled": true
+    }, 
+    "optimizer": {
+        "type": "AdamW", 
+        "params": {
+            "lr": 2e-05, 
+            "betas": [0.9, 0.999], 
+            "eps": 1e-08, 
+            "weight_decay": 0.1
+        }
+    }, 
+    "scheduler": {
+        "type": "WarmupDecayLR", 
+        "params": {
+            "total_num_steps": 2.526000e+04, 
+            "warmup_min_lr": 0, 
+            "warmup_max_lr": 2e-05, 
+            "warmup_num_steps": 758
+        }
+    }, 
+    "zero_optimization": {
+        "stage": 1, 
+        "overlap_comm": true, 
+        "contiguous_gradients": true, 
+        "sub_group_size": 1.000000e+09, 
+        "reduce_bucket_size": 1.677722e+07, 
+        "stage3_prefetch_bucket_size": 1.509949e+07, 
+        "stage3_param_persistence_threshold": 4.096000e+04, 
+        "stage3_max_live_parameters": 1.000000e+09, 
+        "stage3_max_reuse_distance": 1.000000e+09, 
+        "stage3_gather_16bit_weights_on_model_save": true
+    }, 
+    "gradient_accumulation_steps": 4, 
+    "gradient_clipping": 1.0, 
+    "steps_per_print": inf, 
+    "train_batch_size": 128, 
+    "train_micro_batch_size_per_gpu": 4, 
+    "wall_clock_breakdown": false, 
+    "fp16": {
+        "enabled": false
+    }
+}
+[INFO|trainer.py:2048] 2024-06-30 18:57:20,341 >> ***** Running training *****
+[INFO|trainer.py:2049] 2024-06-30 18:57:20,341 >>   Num examples = 646,658
+[INFO|trainer.py:2050] 2024-06-30 18:57:20,341 >>   Num Epochs = 5
+[INFO|trainer.py:2051] 2024-06-30 18:57:20,341 >>   Instantaneous batch size per device = 4
+[INFO|trainer.py:2054] 2024-06-30 18:57:20,341 >>   Total train batch size (w. parallel, distributed & accumulation) = 128
+[INFO|trainer.py:2055] 2024-06-30 18:57:20,341 >>   Gradient Accumulation steps = 4
+[INFO|trainer.py:2056] 2024-06-30 18:57:20,341 >>   Total optimization steps = 25,260
+[INFO|trainer.py:2057] 2024-06-30 18:57:20,342 >>   Number of trainable parameters = 8,030,261,248
+  0%|          | 0/25260 [00:00<?, ?it/s]/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/utils/checkpoint.py:429: UserWarning: torch.utils.checkpoint: please pass in use_reentrant=True or use_reentrant=False explicitly. The default value of use_reentrant will be updated to be False in the future. To maintain current behavior, pass use_reentrant=True. It is recommended that you use use_reentrant=False. Refer to docs for more details on the differences between the two variants.
+  warnings.warn(
+[WARNING|logging.py:314] 2024-06-30 18:57:21,351 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,365 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,367 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,379 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,379 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,385 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,385 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,403 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,409 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,410 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,411 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,413 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,413 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,417 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,417 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,417 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,418 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,421 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,421 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,422 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,423 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,424 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,425 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,425 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,426 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,426 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,428 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,429 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,431 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,431 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,432 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,432 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,432 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,435 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,437 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,442 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,442 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,446 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,447 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,447 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,447 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,448 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,453 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,454 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,457 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,460 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,461 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,462 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,463 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,468 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,469 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,471 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,472 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,474 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,475 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,475 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,475 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,476 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,476 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,477 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,477 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,478 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,478 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,479 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,479 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,479 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,480 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,480 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,480 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,481 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,481 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,482 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,485 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,487 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,488 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,489 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,491 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,491 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,494 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,498 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,499 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,499 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,501 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,502 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,503 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,505 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,508 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,508 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,510 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Saving dummy inputs...
+[WARNING|logging.py:314] 2024-06-30 18:57:21,511 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,513 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,514 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,517 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,517 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,518 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,520 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,520 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,523 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,524 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,524 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,526 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,527 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Saving dummy inputs...
+[WARNING|logging.py:314] 2024-06-30 18:57:21,527 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,527 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,528 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,532 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,532 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,536 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,536 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,538 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,541 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,542 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,544 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Skiping attention_mask...
+Skiping attention_mask...
+[WARNING|logging.py:314] 2024-06-30 18:57:21,548 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,548 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,549 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,554 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,561 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Saving dummy inputs...
+[WARNING|logging.py:329] 2024-06-30 18:57:21,563 >> `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,570 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:329] 2024-06-30 18:57:21,571 >> `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,571 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Saving dummy inputs...
+[WARNING|logging.py:314] 2024-06-30 18:57:21,572 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,577 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,584 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Skiping attention_mask...[WARNING|logging.py:314] 2024-06-30 18:57:21,586 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,587 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+
+Skiping attention_mask...
+[WARNING|logging.py:329] 2024-06-30 18:57:21,607 >> `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[WARNING|logging.py:329] 2024-06-30 18:57:21,613 >> `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,624 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,626 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,650 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,654 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,656 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,660 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,660 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,663 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/utils/checkpoint.py:429: UserWarning: torch.utils.checkpoint: please pass in use_reentrant=True or use_reentrant=False explicitly. The default value of use_reentrant will be updated to be False in the future. To maintain current behavior, pass use_reentrant=True. It is recommended that you use use_reentrant=False. Refer to docs for more details on the differences between the two variants.
+  warnings.warn(
+[WARNING|logging.py:314] 2024-06-30 18:57:21,666 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,669 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,676 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,677 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,677 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,678 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,677 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,678 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,679 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/utils/checkpoint.py:429: UserWarning: torch.utils.checkpoint: please pass in use_reentrant=True or use_reentrant=False explicitly. The default value of use_reentrant will be updated to be False in the future. To maintain current behavior, pass use_reentrant=True. It is recommended that you use use_reentrant=False. Refer to docs for more details on the differences between the two variants.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/utils/checkpoint.py:429: UserWarning: torch.utils.checkpoint: please pass in use_reentrant=True or use_reentrant=False explicitly. The default value of use_reentrant will be updated to be False in the future. To maintain current behavior, pass use_reentrant=True. It is recommended that you use use_reentrant=False. Refer to docs for more details on the differences between the two variants.
+  warnings.warn(
+[WARNING|logging.py:314] 2024-06-30 18:57:21,684 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,684 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,684 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,683 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,685 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,683 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,684 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,684 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,684 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,683 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,684 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,684 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,684 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,686 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,686 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,686 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,686 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,686 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,684 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,687 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,687 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/utils/checkpoint.py:429: UserWarning: torch.utils.checkpoint: please pass in use_reentrant=True or use_reentrant=False explicitly. The default value of use_reentrant will be updated to be False in the future. To maintain current behavior, pass use_reentrant=True. It is recommended that you use use_reentrant=False. Refer to docs for more details on the differences between the two variants.
+  warnings.warn(
+[WARNING|logging.py:314] 2024-06-30 18:57:21,687 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,688 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,688 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,688 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,689 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,689 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,689 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,690 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,690 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,690 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,691 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,691 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,691 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,691 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,691 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,692 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,692 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,692 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,692 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,693 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,693 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,693 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,693 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,695 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,696 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,706 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,706 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,706 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,706 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,707 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,707 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,712 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,712 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,713 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,713 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,714 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,714 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,714 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,715 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,715 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,715 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,715 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,715 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,716 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Saving dummy inputs...
+[WARNING|logging.py:314] 2024-06-30 18:57:21,716 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,717 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,717 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,717 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,717 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,717 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,718 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,721 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,712 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,729 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Skiping attention_mask...
+[WARNING|logging.py:329] 2024-06-30 18:57:21,735 >> `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,737 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,738 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+[WARNING|logging.py:314] 2024-06-30 18:57:21,740 >> You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Saving dummy inputs...
+Skiping attention_mask...
+[WARNING|logging.py:329] 2024-06-30 18:57:21,779 >> `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+Saving dummy inputs...
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/utils/checkpoint.py:429: UserWarning: torch.utils.checkpoint: please pass in use_reentrant=True or use_reentrant=False explicitly. The default value of use_reentrant will be updated to be False in the future. To maintain current behavior, pass use_reentrant=True. It is recommended that you use use_reentrant=False. Refer to docs for more details on the differences between the two variants.
+  warnings.warn(
+Skiping attention_mask...
+[WARNING|logging.py:329] 2024-06-30 18:57:21,818 >> `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/utils/checkpoint.py:429: UserWarning: torch.utils.checkpoint: please pass in use_reentrant=True or use_reentrant=False explicitly. The default value of use_reentrant will be updated to be False in the future. To maintain current behavior, pass use_reentrant=True. It is recommended that you use use_reentrant=False. Refer to docs for more details on the differences between the two variants.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/utils/checkpoint.py:429: UserWarning: torch.utils.checkpoint: please pass in use_reentrant=True or use_reentrant=False explicitly. The default value of use_reentrant will be updated to be False in the future. To maintain current behavior, pass use_reentrant=True. It is recommended that you use use_reentrant=False. Refer to docs for more details on the differences between the two variants.
+  warnings.warn(
+  0%|          | 1/25260 [00:09<65:29:14,  9.33s/it]                                                    {'loss': 2.5736, 'grad_norm': 28.20244329162258, 'learning_rate': 0.0, 'epoch': 0.0}
+  0%|          | 1/25260 [00:09<65:29:14,  9.33s/it]  0%|          | 2/25260 [00:16<56:51:34,  8.10s/it][E ProcessGroupNCCL.cpp:475] [Rank 1] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800582 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:475] [Rank 3] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800367 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:475] [Rank 5] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800101 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:475] [Rank 4] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800397 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:475] [Rank 0] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800183 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:475] [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800801 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:475] [Rank 2] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800850 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:489] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[E ProcessGroupNCCL.cpp:495] To avoid data inconsistency, we are taking the entire process down.
+[E ProcessGroupNCCL.cpp:489] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[E ProcessGroupNCCL.cpp:495] To avoid data inconsistency, we are taking the entire process down.
+[E ProcessGroupNCCL.cpp:489] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[E ProcessGroupNCCL.cpp:495] To avoid data inconsistency, we are taking the entire process down.
+[E ProcessGroupNCCL.cpp:489] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[E ProcessGroupNCCL.cpp:495] To avoid data inconsistency, we are taking the entire process down.
+[E ProcessGroupNCCL.cpp:489] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[E ProcessGroupNCCL.cpp:495] To avoid data inconsistency, we are taking the entire process down.
+[E ProcessGroupNCCL.cpp:916] [Rank 5] NCCL watchdog thread terminated with exception: [Rank 5] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800101 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:916] [Rank 3] NCCL watchdog thread terminated with exception: [Rank 3] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800367 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:916] [Rank 4] NCCL watchdog thread terminated with exception: [Rank 4] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800397 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:916] [Rank 2] NCCL watchdog thread terminated with exception: [Rank 2] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800850 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:916] [Rank 1] NCCL watchdog thread terminated with exception: [Rank 1] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=748, OpType=ALLREDUCE, NumelIn=525336576, NumelOut=525336576, Timeout(ms)=1800000) ran for 1800582 milliseconds before timing out.
+[2024-06-30 19:28:37,742] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 46004
+[2024-06-30 19:28:38,159] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 46005
+[2024-06-30 19:28:38,200] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 46006
+[2024-06-30 19:28:51,766] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 46007
+[2024-06-30 19:28:51,801] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 46008
+[2024-06-30 19:28:51,802] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 46009
+[2024-06-30 19:28:51,828] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 46010
+[2024-06-30 19:28:52,186] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 46011
+[2024-06-30 19:28:52,526] [ERROR] [launch.py:321:sigkill_handler] ['/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/bin/python', '-u', '/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py', '--local_rank=7', '--deepspeed', '/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/ds_configs/stage1_no_offloading.conf', '--data_path', '/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/TaskData/pmc-new-sft', '--model_name_or_path', '/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3', '--tokenizer_name', '/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3', '--use_fast_tokenizer', 'False', '--conditional_gen', 'True', '--max_seq_length', '2048', '--do_train', '--do_eval', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '4', '--learning_rate', '2e-5', '--lr_scheduler_type', 'cosine', '--warmup_ratio', '0.03', '--weight_decay', '0.1', '--evaluation_strategy', 'epoch', '--logging_steps', '100', '--greater_is_better', 'False', '--save_strategy', 'epoch', '--save_total_limit', '5', '--save_only_model', 'True', '--num_train_epochs', '5', '--logging_first_step', 'True', '--gradient_checkpointing', '--use_peft', 'False', '--use_flash_attn', 'True', '--output_dir', '/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/output/exp.MedLLaMA3/SFT-pmc-new-sft-MedLLaMA3-epoch3-ConGenMode-lr-2e-5-totalbsz128-decay0.1-5epoch', '--torch_dtype', 'bfloat16', '--bf16', '--tf32', 'True', '--overwrite_output_dir', '--preprocessing_num_workers', '32', '--dataloader_num_workers', '32', '--data_cache_dir', '/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/TaskData/pmc-new-sft/.cache-llama3', '--wandb_project', 'medllama3', '--report_to', 'tensorboard'] exits with return code = -6

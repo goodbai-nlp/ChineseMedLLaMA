@@ -6,10 +6,12 @@ BasePath=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai
 CurDir=$(cd $(dirname $0);cd ..; pwd)
 
 MODEL_NAME=llama3-8b-instruct
+MODEL_NAME=MedLLaMA3-epoch3
 
 MODEL=${BasePath}/data/pretrained-models/${MODEL_NAME}
 DataPath=${BasePath}/data/TaskData
 DataSetName=Chinese-MedQA-IT-llama3
+DataSetName=pmc-new-sft
 
 export HF_DATASETS_CACHE=${DataPath}/${DataSetName}/.cache
 
@@ -23,8 +25,7 @@ echo "Training llama model ${MODEL_SIZE} using $NUM_GPUS GPUs, $BATCH_SIZE_PER_G
 lr=2e-5
 NUM_EPOCHS=5
 
-#OUTPUT_DIR=${BasePath}/output/exp.MedLLaMA/SFT-${DataSetName}-${MODEL_NAME}-ConGenMode-lr-${lr}-totalbsz${TOTAL_BATCH_SIZE}-decay0.1-${NUM_EPOCHS}epoch
-OUTPUT_DIR=${BasePath}/output/exp.MedLLaMA/SFT-${DataSetName}-${MODEL_NAME}-ConGenMode-lr-${lr}-totalbsz${TOTAL_BATCH_SIZE}-decay0.1-${NUM_EPOCHS}epoch-new
+OUTPUT_DIR=${BasePath}/output/exp.MedLLaMA3/SFT-${DataSetName}-${MODEL_NAME}-ConGenMode-lr-${lr}-totalbsz${TOTAL_BATCH_SIZE}-decay0.1-${NUM_EPOCHS}epoch
 
 if [ ! -d ${OUTPUT_DIR} ];then
   mkdir -p ${OUTPUT_DIR}

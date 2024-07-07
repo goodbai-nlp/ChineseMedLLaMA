@@ -1,0 +1,441 @@
+gpu001
+0,1,2,3,4,5,6,7
+Sun Jun 30 18:49:40 2024       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.54.03              Driver Version: 535.54.03    CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100 80GB PCIe          Off | 00000000:34:00.0 Off |                    0 |
+| N/A   54C    P0              52W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100 80GB PCIe          Off | 00000000:35:00.0 Off |                    0 |
+| N/A   53C    P0              51W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   2  NVIDIA A100 80GB PCIe          Off | 00000000:36:00.0 Off |                    0 |
+| N/A   55C    P0              51W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   3  NVIDIA A100 80GB PCIe          Off | 00000000:37:00.0 Off |                    0 |
+| N/A   51C    P0              45W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   4  NVIDIA A100 80GB PCIe          Off | 00000000:9B:00.0 Off |                    0 |
+| N/A   55C    P0              54W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   5  NVIDIA A100 80GB PCIe          Off | 00000000:9C:00.0 Off |                    0 |
+| N/A   56C    P0              52W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   6  NVIDIA A100 80GB PCIe          Off | 00000000:9D:00.0 Off |                    0 |
+| N/A   57C    P0              56W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   7  NVIDIA A100 80GB PCIe          Off | 00000000:9E:00.0 Off |                    0 |
+| N/A   55C    P0              56W / 300W |      4MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+Training llama model 8B using 8 GPUs, 4 batch size per GPU, 4 gradient accumulation steps
+Please answer yes or no.
+/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src
+[2024-06-30 18:49:52,319] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:49:57,209] [WARNING] [runner.py:202:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+Detected CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7: setting --include=localhost:0,1,2,3,4,5,6,7
+[2024-06-30 18:49:57,261] [INFO] [runner.py:570:main] cmd = /home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/bin/python -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN119 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None /online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py --deepspeed /online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/ds_configs/stage1_no_offloading.conf --data_path /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/TaskData/pmc-new-sft --model_name_or_path /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3 --tokenizer_name /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3 --use_fast_tokenizer False --conditional_gen True --max_seq_length 2048 --do_train --do_eval --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 4 --learning_rate 2e-5 --lr_scheduler_type cosine --warmup_ratio 0.03 --weight_decay 0.1 --evaluation_strategy epoch --logging_steps 100 --greater_is_better False --save_strategy epoch --save_total_limit 5 --save_only_model True --num_train_epochs 5 --logging_first_step True --gradient_checkpointing --use_peft False --use_flash_attn True --output_dir /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/output/exp.MedLLaMA3/SFT-pmc-new-sft-MedLLaMA3-epoch3-ConGenMode-lr-2e-5-totalbsz128-decay0.1-5epoch --torch_dtype bfloat16 --bf16 --tf32 True --overwrite_output_dir --preprocessing_num_workers 32 --dataloader_num_workers 32 --data_cache_dir /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/TaskData/pmc-new-sft/.cache-llama3 --wandb_project medllama3 --report_to tensorboard
+[2024-06-30 18:49:59,895] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:50:01,281] [INFO] [launch.py:138:main] 0 NCCL_SOCKET_IFNAME=ib2
+[2024-06-30 18:50:01,282] [INFO] [launch.py:138:main] 0 NCCL_IB_HAC=mlx5_2
+[2024-06-30 18:50:01,282] [INFO] [launch.py:138:main] 0 NCCL_P2P_DISABLE=1
+[2024-06-30 18:50:01,282] [INFO] [launch.py:138:main] 0 NCCL_IB_DISABLE=0
+[2024-06-30 18:50:01,282] [INFO] [launch.py:145:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]}
+[2024-06-30 18:50:01,282] [INFO] [launch.py:151:main] nnodes=1, num_local_procs=8, node_rank=0
+[2024-06-30 18:50:01,282] [INFO] [launch.py:162:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]})
+[2024-06-30 18:50:01,282] [INFO] [launch.py:163:main] dist_world_size=8
+[2024-06-30 18:50:01,282] [INFO] [launch.py:165:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/deepspeed.py:23: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/utils/import_utils.py:521: FutureWarning: `is_torch_tpu_available` is deprecated and will be removed in 4.41.0. Please use the `is_torch_xla_available` instead.
+  warnings.warn(
+[2024-06-30 18:50:12,785] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:50:12,787] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:50:12,797] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:50:12,801] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:50:12,806] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:50:12,807] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:50:12,808] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:50:12,834] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-06-30 18:50:13,256] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:50:13,258] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:50:13,278] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:50:13,351] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:50:13,371] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:50:13,402] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:50:13,412] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:50:13,490] [INFO] [comm.py:637:init_distributed] cdb=None
+[2024-06-30 18:50:13,490] [INFO] [comm.py:668:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:50:20 - WARNING - __main__ - Process rank: 5, device: cuda:5, n_gpu: 1distributed training: True, 16-bits training: False
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:50:20 - WARNING - __main__ - Process rank: 4, device: cuda:4, n_gpu: 1distributed training: True, 16-bits training: False
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:50:20 - WARNING - __main__ - Process rank: 3, device: cuda:3, n_gpu: 1distributed training: True, 16-bits training: False
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:50:20 - WARNING - __main__ - Process rank: 6, device: cuda:6, n_gpu: 1distributed training: True, 16-bits training: False
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:50:20 - WARNING - __main__ - Process rank: 1, device: cuda:1, n_gpu: 1distributed training: True, 16-bits training: False
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:50:20 - WARNING - __main__ - Process rank: 2, device: cuda:2, n_gpu: 1distributed training: True, 16-bits training: False
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:50:20 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 1distributed training: True, 16-bits training: False
+06/30/2024 18:50:20 - INFO - __main__ - Training parameters LLMTrainingArguments(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'gradient_accumulation_kwargs': None},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=True,
+bf16_full_eval=False,
+conditional_gen=True,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/ds_configs/stage1_no_offloading.conf,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=True,
+early_stopping=5,
+eval_accumulation_steps=None,
+eval_dataloader_num_workers=0,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_steps=None,
+evaluation_strategy=epoch,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+generation_max_length=None,
+generation_num_beams=None,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs=None,
+greater_is_better=False,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+ignore_opt_states=False,
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=2e-05,
+length_column_name=length,
+length_penalty=1.0,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/output/exp.MedLLaMA3/SFT-pmc-new-sft-MedLLaMA3-epoch3-ConGenMode-lr-2e-5-totalbsz128-decay0.1-5epoch/runs/Jun30_18-50-12_gpu001,
+logging_first_step=True,
+logging_nan_inf_filter=True,
+logging_steps=100,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_new_tokens=128,
+max_steps=-1,
+metric_for_best_model=None,
+min_length=0,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=5.0,
+optim=adamw_torch,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/output/exp.MedLLaMA3/SFT-pmc-new-sft-MedLLaMA3-epoch3-ConGenMode-lr-2e-5-totalbsz128-decay0.1-5epoch,
+overwrite_output_dir=True,
+past_index=-1,
+peft_lora_alpha=16,
+peft_lora_r=64,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+predict_with_generate=False,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard'],
+resume_from_checkpoint=None,
+run_name=/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/output/exp.MedLLaMA3/SFT-pmc-new-sft-MedLLaMA3-epoch3-ConGenMode-lr-2e-5-totalbsz128-decay0.1-5epoch,
+save_on_each_node=False,
+save_only_model=True,
+save_safetensors=True,
+save_steps=500,
+save_strategy=epoch,
+save_total_limit=5,
+seed=42,
+skip_memory_metrics=True,
+smart_init=False,
+sortish_sampler=False,
+split_batches=None,
+task=amr2text,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_flash_attn=True,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+use_peft=False,
+use_qlora=False,
+wandb_project=medllama3,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+[INFO|configuration_utils.py:724] 2024-06-30 18:50:20,860 >> loading configuration file /home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3/config.json
+[INFO|configuration_utils.py:789] 2024-06-30 18:50:20,864 >> Model config LlamaConfig {
+  "_name_or_path": "/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 14336,
+  "max_position_embeddings": 8192,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": null,
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": false,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.40.2",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2085] 2024-06-30 18:50:20,868 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2085] 2024-06-30 18:50:20,868 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2085] 2024-06-30 18:50:20,868 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2085] 2024-06-30 18:50:20,869 >> loading file tokenizer_config.json
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+06/30/2024 18:50:21 - WARNING - __main__ - Process rank: 7, device: cuda:7, n_gpu: 1distributed training: True, 16-bits training: False
+[WARNING|logging.py:314] 2024-06-30 18:50:21,089 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|logging.py:314] 2024-06-30 18:50:21,153 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|logging.py:314] 2024-06-30 18:50:21,154 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|logging.py:314] 2024-06-30 18:50:21,156 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|logging.py:314] 2024-06-30 18:50:21,164 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|logging.py:314] 2024-06-30 18:50:21,173 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|logging.py:314] 2024-06-30 18:50:21,267 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+06/30/2024 18:50:21 - INFO - __main__ - Unsupportted Tokenizer Type:<class 'transformers.tokenization_utils_fast.PreTrainedTokenizerFast'>
+[WARNING|logging.py:314] 2024-06-30 18:50:21,352 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Traceback (most recent call last):
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 528, in <module>
+    main()
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 316, in main
+    with training_args.main_process_first(desc="Processing instruction data"):
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/contextlib.py", line 142, in __exit__
+    next(self.gen)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/training_args.py", line 2286, in main_process_first
+    dist.barrier()
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 3696, in barrier
+    work = default_pg.barrier(opts=opts)
+torch.distributed.DistBackendError: NCCL error in: /opt/conda/conda-bld/pytorch_1702400366987/work/torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:1251, internal error - please report this issue to the NCCL developers, NCCL version 2.18.6
+ncclInternalError: Internal check failed.
+Last error:
+Bootstrap : no socket interface found
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 528, in <module>
+    main()
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 316, in main
+    with training_args.main_process_first(desc="Processing instruction data"):
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/training_args.py", line 2277, in main_process_first
+    dist.barrier()
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 3696, in barrier
+    work = default_pg.barrier(opts=opts)
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 528, in <module>
+    main()
+RuntimeError: [4] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Connection reset by peer. This may indicate a possible application crash on rank 0 or a network set up issue.
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 316, in main
+    with training_args.main_process_first(desc="Processing instruction data"):
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/training_args.py", line 2277, in main_process_first
+    dist.barrier()
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 3696, in barrier
+    work = default_pg.barrier(opts=opts)
+Traceback (most recent call last):
+RuntimeError: [5] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Connection reset by peer. This may indicate a possible application crash on rank 0 or a network set up issue.
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 528, in <module>
+    main()
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 316, in main
+    with training_args.main_process_first(desc="Processing instruction data"):
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/training_args.py", line 2277, in main_process_first
+    dist.barrier()
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 3696, in barrier
+    work = default_pg.barrier(opts=opts)
+RuntimeError: [1] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Connection reset by peer. This may indicate a possible application crash on rank 0 or a network set up issue.
+Traceback (most recent call last):
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 528, in <module>
+    main()
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 316, in main
+    with training_args.main_process_first(desc="Processing instruction data"):
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/training_args.py", line 2277, in main_process_first
+    dist.barrier()
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 3696, in barrier
+    work = default_pg.barrier(opts=opts)
+RuntimeError: [7] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Connection reset by peer. This may indicate a possible application crash on rank 0 or a network set up issue.
+Traceback (most recent call last):
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 528, in <module>
+    main()
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 316, in main
+    with training_args.main_process_first(desc="Processing instruction data"):
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/training_args.py", line 2277, in main_process_first
+    dist.barrier()
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 3696, in barrier
+    work = default_pg.barrier(opts=opts)
+RuntimeError: [2] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Connection reset by peer. This may indicate a possible application crash on rank 0 or a network set up issue.
+Traceback (most recent call last):
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 528, in <module>
+    main()
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 316, in main
+    with training_args.main_process_first(desc="Processing instruction data"):
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/training_args.py", line 2277, in main_process_first
+    dist.barrier()
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 3696, in barrier
+    work = default_pg.barrier(opts=opts)
+RuntimeError: [6] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Connection reset by peer. This may indicate a possible application crash on rank 0 or a network set up issue.
+Traceback (most recent call last):
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 528, in <module>
+    main()
+  File "/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py", line 316, in main
+    with training_args.main_process_first(desc="Processing instruction data"):
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/transformers/training_args.py", line 2277, in main_process_first
+    dist.barrier()
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47, in wrapper
+    return func(*args, **kwargs)
+  File "/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 3696, in barrier
+    work = default_pg.barrier(opts=opts)
+RuntimeError: [3] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Connection reset by peer. This may indicate a possible application crash on rank 0 or a network set up issue.
+[2024-06-30 18:50:26,324] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 42226
+[2024-06-30 18:50:26,324] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 42227
+[2024-06-30 18:50:26,517] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 42228
+[2024-06-30 18:50:26,725] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 42229
+[2024-06-30 18:50:26,975] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 42230
+[2024-06-30 18:50:27,182] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 42231
+[2024-06-30 18:50:27,385] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 42232
+[2024-06-30 18:50:27,591] [INFO] [launch.py:315:sigkill_handler] Killing subprocess 42233
+[2024-06-30 18:50:27,784] [ERROR] [launch.py:321:sigkill_handler] ['/home/export/base/ycsc_chenkh/chenkh_nvlink/.conda/envs/py3.10torch2.1devel/bin/python', '-u', '/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/main.py', '--local_rank=7', '--deepspeed', '/online1/ycsc_chenkh/chenkh_nvlink/xfbai/code/exp.MedLLaMA/src/ds_configs/stage1_no_offloading.conf', '--data_path', '/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/TaskData/pmc-new-sft', '--model_name_or_path', '/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3', '--tokenizer_name', '/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/pretrained-models/MedLLaMA3-epoch3', '--use_fast_tokenizer', 'False', '--conditional_gen', 'True', '--max_seq_length', '2048', '--do_train', '--do_eval', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '4', '--learning_rate', '2e-5', '--lr_scheduler_type', 'cosine', '--warmup_ratio', '0.03', '--weight_decay', '0.1', '--evaluation_strategy', 'epoch', '--logging_steps', '100', '--greater_is_better', 'False', '--save_strategy', 'epoch', '--save_total_limit', '5', '--save_only_model', 'True', '--num_train_epochs', '5', '--logging_first_step', 'True', '--gradient_checkpointing', '--use_peft', 'False', '--use_flash_attn', 'True', '--output_dir', '/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/output/exp.MedLLaMA3/SFT-pmc-new-sft-MedLLaMA3-epoch3-ConGenMode-lr-2e-5-totalbsz128-decay0.1-5epoch', '--torch_dtype', 'bfloat16', '--bf16', '--tf32', 'True', '--overwrite_output_dir', '--preprocessing_num_workers', '32', '--dataloader_num_workers', '32', '--data_cache_dir', '/home/export/base/ycsc_chenkh/chenkh_nvlink/online1/xfbai/data/TaskData/pmc-new-sft/.cache-llama3', '--wandb_project', 'medllama3', '--report_to', 'tensorboard'] exits with return code = 1
